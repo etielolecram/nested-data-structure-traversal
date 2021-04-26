@@ -1,15 +1,13 @@
-import java.text.FieldPosition
-
 data class Section(
     val title: String,
     val resetLessonPosition: Boolean,
     val lessons: List<Lesson>,
-    var position: Int? = null
+    val position: Int? = null
 )
 
-data class Lesson(val name: String, var position: Int? = null)
+data class Lesson(val name: String, val position: Int? = null)
 
-val sections = listOf(
+private val sections = listOf(
     Section(
         "Getting started", false, listOf(
             Lesson("Welcome"),
@@ -30,22 +28,18 @@ val sections = listOf(
     )
 )
 
+private fun positions(): Sequence<Int> = generateSequence(1) { it + 1 }
 
 fun main() {
-    var lessonCounter = 1
-    var sectionCounter = 1
-    sections.forEach { section ->
-        if (section.resetLessonPosition) {
-            lessonCounter = 0
-        }
-        section.position = sectionCounter
-        sectionCounter++
-        section.lessons.forEach { lesson ->
-            lesson.position = lessonCounter
-            lessonCounter++
-        }
+    var lessonNumbers = positions().iterator()
 
+    val updated = sections.mapIndexed { idx, section ->
+        if (section.resetLessonPosition) lessonNumbers = positions().iterator()
+        section.copy(
+            lessons = section.lessons.map { it.copy(position = lessonNumbers.next()) },
+            position = idx + 1
+        )
     }
 
-    println(sections)
+    println(updated)
 }

@@ -2,6 +2,8 @@
 
 The goal of this repository is to share solutions to a common problem of traversing and annotating data-structures across a variety of programming languages.
 
+*Note: This repository has now been archived with many different solutions across multiple languages, thanks to everyone who contributed!*
+
 ## The problem
 
 The algorithm should receive a list of sections. A section is a key-value data structure, with a "title", a "reset_lesson_position" boolean, and a list of "lessons". A lesson is a key-value data structure with the "name" field.
@@ -101,19 +103,26 @@ for section in sections:
 print(sections)
 ```
 
-Thanks to @nickjj for the description of the problem and for contributing this Python solution.
+Thanks to [@nickjanetakis](https://twitter.com/nickjanetakis) for the description of the problem and for contributing this Python solution.
 
 ## Contribute
 
-Please send a pull request with a solution to the problem for a given programming language in its directory. The solution should be a single file named after the approach taken. For example, the Python solution above is placed at:
+New solutions to the problem are welcome. In order to contribute:
+
+  * Make sure there are no entries for your programming language of choice
+  * If there are existing entries, make sure your proposed solution is considerably distinct
+
+For example, avoid new entries that are small variations of existing solutions. Solutions that use different approaches, such as mutability vs immutability, single-pass vs chunking, etc are all welcome though.
+
+Once your solution is ready, please send a pull request. The solution should inside a directory named after the programming language and be a single file named after the approach taken. For example, the Python solution above is placed at:
 
     python/for-in.py
 
-*If your solution requires more than 1 file, then you can include all of them inside a directory such as `python/for-in/example.py`. However, please don't include project setup files.*
+*If your solution requires more than 1 file, then you can include all of them inside a directory such as `python/for-in/example.py`. However, there is no need to include project setup files.*
 
-Multiple entries may be placed for a given programming language, as long as they use different approaches. However, it is important the approaches are considered readable and idiomatic. The goal is to focus on readability rather than performance, code golfing, etc.
+It is important the solutions are considered readable and idiomatic. The goal is to focus on readability rather than performance, code golfing, etc.
 
-All code in this repository should be placed in the public domain. Thank you for sharing a solution!
+All code in this repository should be placed in the public domain. Thank you for the time and for sharing a solution!
 
 ## License
 

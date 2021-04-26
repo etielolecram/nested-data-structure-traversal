@@ -1,8 +1,10 @@
+#[derive(Debug)]
 struct Lesson {
     name: String,
     position: Option<u32>,
 }
 
+#[derive(Debug)]
 struct Section {
     title: String,
     reset_position_title: bool,
@@ -23,7 +25,7 @@ fn main() {
                 Lesson {
                     name: String::from("Installation"),
                     position: None,
-                }
+                },
             ],
             position: None,
         },
@@ -53,36 +55,44 @@ fn main() {
                 Lesson {
                     name: String::from("Immutability"),
                     position: None,
-                }
+                },
             ],
             position: None,
-        }
+        },
     ];
-    
+
     let mut section_position = 0;
     let mut lesson_position = 0;
 
-    let formatted_sections: Vec<Section> = sections.iter().map(|s| {
-        if s.reset_position_title == true {
-            lesson_position = 0;
-        }
+    let formatted_sections: Vec<Section> = sections
+        .iter()
+        .map(|s| {
+            if s.reset_position_title == true {
+                lesson_position = 0;
+            }
 
-        section_position += 1;
+            section_position += 1;
 
-        Section {
-            lessons: s.lessons.iter().map(|l| {
-                lesson_position += 1;
+            Section {
+                lessons: s
+                    .lessons
+                    .iter()
+                    .map(|l| {
+                        lesson_position += 1;
 
-                Lesson {
-                    position: Some(lesson_position),
-                    name: l.name.clone(),
-                    ..*l
-                }
-            }).collect(),
-            title: s.title.clone(),
-            position: Some(section_position),
-            ..*s
-        }
-    }).collect();
+                        Lesson {
+                            position: Some(lesson_position),
+                            name: l.name.clone(),
+                            ..*l
+                        }
+                    })
+                    .collect(),
+                title: s.title.clone(),
+                position: Some(section_position),
+                ..*s
+            }
+        })
+        .collect();
+
+    println!("{:?}", formatted_sections);
 }
-
